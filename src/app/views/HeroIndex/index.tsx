@@ -2,12 +2,6 @@ import * as React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import styled from 'styled-components';
-
-/*
-// Carousel element by Maksim Marinich: https://github.com/maxmarinich/react-alice-carousel
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-*/
 import Carousel from 'react-bootstrap/Carousel';
 
 import { TopBar } from '../../components/TopBar';
@@ -66,18 +60,12 @@ const HeroCardContainer = styled.div`
 `;
 
 const CarouselContainer = styled.div`
-    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 `;
 
-const CarouselButton = styled.button`   
-    height: 80px;
-    background: none;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-`;
 const ButtonIcon = styled.img`
     width: 40px;
     margin: 4vmin;
@@ -99,12 +87,6 @@ interface IHeroIndexProps {}
 export const HeroIndex: React.FC<IHeroIndexProps> = () => {
     const { data, error, loading } = useQuery(HEROES_QUERY);
 
-    const [activeIndex, setActiveIndex] = React.useState(0);
-
-    const slidePrev = () => setActiveIndex(activeIndex - 1);
-    const slideNext = () => setActiveIndex(activeIndex + 1);
-    const onSlideChanged = ({ item }) => setActiveIndex(item);
-
     if (error) return handleError(error.message);
 	if (loading) return handleLoading();
 
@@ -120,34 +102,23 @@ export const HeroIndex: React.FC<IHeroIndexProps> = () => {
                 />
                 <Body>
                     <HeroCardContainer>
-                        <CarouselButton onClick={slidePrev}>
-                            <ButtonIcon src={`${publicUrl}/arrow_left.svg`} alt="<"/>
-                        </CarouselButton>
                         <CarouselContainer>
-                            <Carousel>
-                                {data.heroes.map((h: HeroType) => {
-                                    return (
+
+                            <Carousel 
+                                keyboard={true}
+                                indicators={false}
+                                prevIcon={<ButtonIcon src={`${publicUrl}/arrow_left.svg`} alt="<"/>}
+                                nextIcon={<ButtonIcon src={`${publicUrl}/arrow_right.svg`} alt=">"/>}
+                                interval={null}
+                            >
+                                {data.heroes.map((h: HeroType) => (
                                         <Carousel.Item key={h.name}>
                                             <HeroCard hero={h} />
                                         </Carousel.Item>
-                                    )
-                                })}
+                                ))}
                             </Carousel>
 
-                            {/*<AliceCarousel
-                                items={heroes}
-                                infinite
-                                mouseTracking
-                                disableButtonsControls
-                                disableDotsControls
-                                touchMoveDefaultEvents={false}
-                                activeIndex={activeIndex}
-                                onSlideChanged={onSlideChanged}
-                            /> */}
                         </CarouselContainer>
-                        <CarouselButton onClick={slideNext}>
-                            <ButtonIcon src={`${publicUrl}/arrow_right.svg`} alt=">"/>
-                        </CarouselButton>
                     </HeroCardContainer>
                 </Body>
                 <Footer />
