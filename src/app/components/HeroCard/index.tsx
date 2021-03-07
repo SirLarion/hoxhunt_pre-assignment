@@ -1,10 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
+import { HeroStory } from '../HeroStory';
 import { Paragraph } from '../Typography';
 import { HeroType } from '../../types';
 
+//=================================/
 const cardTall = ' \
     height: 85vh; \
     width: 75%; \
@@ -29,7 +30,9 @@ const headerDefaults = ' \
     line-height: 39px; \
     letter-spacing: 1.15px; \
 ';
+//=================================/
 
+//=================================/
 const Card = styled.div`
     ${cardTall}
     margin-left: auto;
@@ -51,7 +54,7 @@ const HeroImage = styled.img`
 const TextContainer = styled.div`
     background: #f0f0f0;
     ${cardContent}
-    padding: 30px;
+    padding: 40px;
 `;
 
 const TextHeader = styled.div`
@@ -61,16 +64,8 @@ const TextHeader = styled.div`
 
 const Nav = styled.div`
     display: flex;
-    padding-right: 30px;
+    padding-right: 50px;
 `;
-
-const Spacer = styled.div`
-    padding: 0 15px 0 15px;
-    align-items: center;
-	color: #001147;
-    ${headerDefaults}
-`;
-
 
 const NavButton = styled.span`
     background: none;
@@ -86,14 +81,27 @@ const NavButton = styled.span`
     }
 `;
 
+const Spacer = styled.div`
+    padding: 0 8px 0 8px;
+    align-items: center;
+	color: #001147;
+    ${headerDefaults}
+`;
+
 const HeroName = styled.h2`
     width: inherit;
 	color: #001147;
     ${headerDefaults}
 `;
+//=================================/
 
 interface IHeroCardProps {
     hero: HeroType;
+}
+
+enum Tab {
+    Info,
+    Story
 }
 
 //=====================================================================================//
@@ -101,7 +109,8 @@ interface IHeroCardProps {
 //
 //
 export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
-    const [isStoryTab, setStoryTab] = React.useState(false);
+    const [tab, setTab] = React.useState(Tab.Info);
+    console.log(hero);
     return (
         <Card>
             <HeroImage 
@@ -115,19 +124,19 @@ export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
                     <HeroName>{hero.name}</HeroName>
                     <Nav>
                         <NavButton 
-                            color={!isStoryTab ? '#001147' : '#7C85A0'}
-                            onClick={() => setStoryTab(false)}
+                            color={tab === Tab.Info ? '#001147' : '#7C85A0'}
+                            onClick={() => setTab(Tab.Info)}
                         >Info</NavButton>
                         <Spacer>/</Spacer>
                         <NavButton 
-                            color={isStoryTab ? '#001147' : '#7C85A0'}
-                            onClick={() => setStoryTab(true)}
+                            color={tab === Tab.Story ? '#001147' : '#7C85A0'}
+                            onClick={() => setTab(Tab.Story)}
                         >Story</NavButton>
                     </Nav>
                 </TextHeader>
 
-                {isStoryTab 
-                    ? <Paragraph>{hero.backStory}</Paragraph>
+                {tab === Tab.Story 
+                    ? <HeroStory story={hero.backStory}/>
                     : <Paragraph>{hero.description}</Paragraph>
                 }
 

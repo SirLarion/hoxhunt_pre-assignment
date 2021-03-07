@@ -10,7 +10,7 @@ import { Section } from '../../components/Section';
 import { Footer } from '../../components/Footer';
 import { HeroCard } from '../../components/HeroCard';
 
-import { publicUrl } from '../../constants';
+import { publicUrl } from '../../utils/constants';
 import { HeroType } from '../../types';
 
 const HEROES_QUERY = gql`
