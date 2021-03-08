@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { HeroStory } from '../HeroStory';
-import { Paragraph } from '../Typography';
+import { HeroInfo } from '../HeroInfo';
 import { HeroType } from '../../types';
 
 //=================================/
@@ -136,8 +136,14 @@ export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
                 </TextHeader>
 
                 {tab === Tab.Story 
-                    ? <HeroStory story={hero.backStory}/>
-                    : <Paragraph>{hero.description}</Paragraph>
+                    ? <HeroStory 
+                        story={hero.backStory}
+                      />
+                    : <HeroInfo 
+                        description={hero.description}
+                        stats={hero.attributes}
+                        skills={hero.skills}
+                      />
                 }
 
             </TextContainer>
