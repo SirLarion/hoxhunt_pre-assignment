@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { HeroAttribute } from '../HeroAttribute';
 import { Paragraph } from '../Typography';
-import { VLine, HLine } from '../Geometry';
+import { VLine, HLine } from '../Layout';
 import { Stats, Skill } from '../../types';
 
 const InfoContainer = styled.div`
@@ -23,11 +23,12 @@ const BottomHalf = styled.div`
 
 const BottomQuarter = styled.div`
     display: flex;
-    height: 50%;
+    height: 65%;
     padding: 15px 0 15px 0;
 `;
 
 const InfoText = styled.div`
+    padding-top: 25px;
 `;
 
 const Attributes = styled.div`
@@ -45,7 +46,6 @@ const AttributeRow = styled.div`
 const Skills = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 40%;
     padding-left: 15px;
 `;
@@ -53,11 +53,17 @@ const Skills = styled.div`
 const SkillsHeader = styled.div`
     font-size: 22px;
     letter-spacing: 1.15px;
+    padding-bottom: 10px;
 `;
+
+interface IFlex { 
+    custom?: string;
+}
 
 const FlexContainer = styled.div`
     display: flex;
     align-items: center;
+    ${(p: IFlex) => p.custom}
 `;
 
 
@@ -102,7 +108,7 @@ export const HeroInfo: React.FC<IHeroInfo> = ({description, stats, skills}) => {
                     <Skills>
                         <SkillsHeader>Skills</SkillsHeader>
                         { skills.map(s => (
-                            <FlexContainer>
+                            <FlexContainer custom="margin-bottom: auto;">
                                 {`${s.name}: ${s.damage}`}
                                 <HeroAttribute name={s.element.toLowerCase()} small />
                             </FlexContainer>

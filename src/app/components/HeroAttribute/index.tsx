@@ -6,7 +6,7 @@ import { publicUrl } from '../../utils/constants';
 import { capitalized } from '../../utils/tools';
 
 const Attribute = styled.div`
-    font-size: 16px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     color: #001147;
@@ -30,7 +30,7 @@ const Icon = styled.img`
 const Tooltip = styled.div`
     font-family: "Oswald";
     letter-spacing: 1.2px;
-    background: #E0E0E0;
+    background: #E0E0E0AA;
     border-radius: 3px;
     padding: 4px 7px 4px 7px;
 `;
@@ -55,7 +55,7 @@ export const HeroAttribute: React.FC<IHeroAttrProps> = ({name, value, noOverlay,
                 <Attribute isSmall={small}>
                     <Icon 
                         isSmall={small}
-                        src={`${publicUrl}/${name}.svg`} 
+                        src={`${publicUrl}/${name}.png`} 
                         alt={`${name} icon`} 
                     />
                     {value}
@@ -73,7 +73,7 @@ export const HeroAttribute: React.FC<IHeroAttrProps> = ({name, value, noOverlay,
                 <Attribute isSmall={small}>
                     <Icon 
                         isSmall={small}
-                        src={`${publicUrl}/${name}.svg`} 
+                        src={`${publicUrl}/${name}.png`} 
                         alt={`${name} icon`} 
                     />
                     {value}
