@@ -3,69 +3,55 @@ import styled from 'styled-components'
 
 import { HeroStory } from '../HeroStory';
 import { HeroInfo } from '../HeroInfo';
-import { HeroType } from '../../types';
+import { HeroType } from '../../../types';
 
-//=================================/
-const cardTall = ' \
-    height: 85vh; \
-    width: 75%; \
-';
+import { FlexContainer, noSelect } from '../../Layout';
 
-const cardWide = ' \
-    height: 60vh; \
-    width: 75%; \
-';
-
-const cardContent = ' \
+const cardResponsive = ' \
     @media (min-width: 1400px) { \
         width: initial; \
         height: inherit; \
     } \
 ';
 
-const headerDefaults = ' \
-	font-family: "Montserrat"; \
-	font-weight: 800; \
-    font-size: 25px; \
-    line-height: 39px; \
-    letter-spacing: 1.15px; \
-';
-//=================================/
-
 //=================================/
 const Card = styled.div`
-    ${cardTall}
+    height: 85vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     border-radius: 30px;
-    display: flex;
-    flex-direction: column;
     @media (min-width: 1400px) {
-        ${cardWide}
+        height: 60vh;
         flex-direction: row;
     }
 `;
 
 const HeroImage = styled.img`
     width: 100%;
-    ${cardContent}
+    ${cardResponsive}
 `;
 
 const TextContainer = styled.div`
     background: #f0f0f0;
-    ${cardContent}
+    ${cardResponsive}
     padding: 40px;
 `;
 
-const TextHeader = styled.div`
-    display: flex;
+const TextHeader = styled(FlexContainer)`
     justify-content: space-between;
+	font-family: "Montserrat";
+	font-weight: 800;
+    font-size: 25px;
+    line-height: 39px;
+    letter-spacing: 1.15px;
+	color: #001147;
+    ${noSelect}
 `;
 
-const Nav = styled.div`
-    display: flex;
-    padding-right: 50px;
-`;
+const Nav = styled(FlexContainer)`padding-right: 50px;`;
 
 const NavButton = styled.span`
     background: none;
@@ -75,7 +61,6 @@ const NavButton = styled.span`
 	cursor: pointer;
 	outline: inherit;
     color:  ${props => props.color};
-    ${headerDefaults}
     &:hover {
         color: #001147;
     }
@@ -84,14 +69,6 @@ const NavButton = styled.span`
 const Spacer = styled.div`
     padding: 0 8px 0 8px;
     align-items: center;
-	color: #001147;
-    ${headerDefaults}
-`;
-
-const HeroName = styled.h2`
-    width: inherit;
-	color: #001147;
-    ${headerDefaults}
 `;
 //=================================/
 
@@ -110,7 +87,6 @@ enum Tab {
 //
 export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
     const [tab, setTab] = React.useState(Tab.Info);
-    console.log(hero);
     return (
         <Card>
             <HeroImage 
@@ -121,7 +97,7 @@ export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
             <TextContainer>
 
                 <TextHeader>
-                    <HeroName>{hero.name}</HeroName>
+                    {hero.name}
                     <Nav>
                         <NavButton 
                             color={tab === Tab.Info ? '#001147' : '#7C85A0'}

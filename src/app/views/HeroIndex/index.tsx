@@ -3,15 +3,19 @@ import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import styled from 'styled-components';
 import Carousel from 'react-bootstrap/Carousel';
+import '../../utils/bootstrap-override.css';
 
 import { TopBar } from '../../components/TopBar';
 import { Hero } from '../../components/Hero';
 import { Section } from '../../components/Section';
 import { Footer } from '../../components/Footer';
-import { HeroCard } from '../../components/HeroCard';
+import { HeroCard } from '../../components/card/HeroCard';
 
 import { publicUrl } from '../../utils/constants';
 import { HeroType } from '../../types';
+
+import { FlexContainer } from '../../components/Layout';
+
 
 const HEROES_QUERY = gql`
 	query {
@@ -44,25 +48,19 @@ const IndexContainer = styled.div`
     background: #fbfbfb;
 `;
 
-const Body = styled.div`
+const Body = styled(FlexContainer)`
     max-width: 100vw;
-    display: flex;
     justify-content: center;
-    align-items: center;
 `;
 
-const HeroCardContainer = styled.div`
+const HeroCardContainer = styled(FlexContainer)`
 	width: 100%;
-	display: flex;
     justify-content: center;
-    align-items: center;
 	padding: 25px 0 50px 0;
 `;
 
-const CarouselContainer = styled.div`
-    display: flex;
+const CarouselContainer = styled(FlexContainer)`
     justify-content: center;
-    align-items: center;
     width: 100%;
 `;
 

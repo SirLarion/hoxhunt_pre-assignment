@@ -94,7 +94,7 @@ const GIDEON: DeepPartial<Hero> = {
     The laptop that he carries with him amplifies and channels his already enormous powers. Even though he might look soft and calm, there is raging power swirling inside him. One should not get in his way.
  `,
 	backStory: `
-    Gideon had always been bit of an oddball. He first noticed his psychic skills when he rescued a tiny kitten from getting squashed by a card. Little did he know of his future before awakening his powers, but at that point it seemed clear to him what he had to do. A couple of years after the incident he joined the Hunters.
+    Gideon had always been bit of an oddball. He first noticed his psychic skills when he rescued a tiny kitten from getting squashed by a car. Little did he know of his future before awakening his powers, but at that point it seemed clear to him what he had to do. A couple of years after the incident he joined the Hunters.
  `,
 	attributes: {
 		strength: 1,

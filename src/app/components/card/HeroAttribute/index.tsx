@@ -2,27 +2,26 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { OverlayTrigger } from 'react-bootstrap';
 
-import { publicUrl } from '../../utils/constants';
-import { capitalized } from '../../utils/tools';
+import { publicUrl } from '../../../utils/constants';
+import { capitalized } from '../../../utils/tools';
 
-const Attribute = styled.div`
+import { FlexContainer } from '../../Layout';
+
+const Attribute = styled(FlexContainer)`
     font-size: 20px;
-    display: flex;
-    align-items: center;
     color: #001147;
     ${(p: SizeProps) => !p.isSmall ? 'margin: 10px' : ''}
 `;
 
-const HSMattr = styled.div`
+const HSMattr = styled(FlexContainer)`
     font-size: 22px;
-    display: flex;
+    line-height: 24px;
     flex-direction: column;
-    align-items: center;
 `;
 
 const Icon = styled.img`
     ${(p: SizeProps) => p.isSmall 
-        ? 'width: 23px;'
+        ? 'width: 23px; margin-left: 4px'
         : 'width: 26px; margin: 4px;'
     }
 `;
