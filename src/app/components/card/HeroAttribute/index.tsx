@@ -2,14 +2,18 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { OverlayTrigger } from 'react-bootstrap';
 
-import { publicUrl } from '../../../utils/constants';
 import { capitalized } from '../../../utils/tools';
-
 import { FlexContainer } from '../../Layout';
 
+interface SizeProps {
+    isSmall: boolean;
+}
+
+// The two variants of attributes
+//=================================/
 const Attribute = styled(FlexContainer)`
     font-size: 20px;
-    color: #001147;
+    justify-content: center;
     ${(p: SizeProps) => !p.isSmall ? 'margin: 10px' : ''}
 `;
 
@@ -18,6 +22,9 @@ const HSMattr = styled(FlexContainer)`
     line-height: 24px;
     flex-direction: column;
 `;
+//=================================/
+
+
 
 const Icon = styled.img`
     ${(p: SizeProps) => p.isSmall 
@@ -34,9 +41,7 @@ const Tooltip = styled.div`
     padding: 4px 7px 4px 7px;
 `;
 
-interface SizeProps {
-    isSmall: boolean;
-}
+
 
 interface IHeroAttrProps {
     name: string;
@@ -45,8 +50,20 @@ interface IHeroAttrProps {
     small?: boolean;
 }
 
-
+//=====================================================================================//
+/*
+ * Container for a single attribute of a hero. For health, stamina and mana, it displays
+ * the name of the attribute, its value and a corresponding icon. The icon is looked for 
+ * in the public folder with the name '{name}.png'
+ * 
+ * For others it displays only the icon and the value with the name popping up as a 
+ * tooltip when hovered over. Uses React Bootstrap overlays to achieve this
+ *
+ * Can also be used for damage types in the same way. 
+ */
 export const HeroAttribute: React.FC<IHeroAttrProps> = ({name, value, noOverlay, small}) => {
+    // Check if noOverlay flag was set. If it was, display the name of
+    // the attribute as well as the icon and value
     if(noOverlay) {
         return (
             <HSMattr>
@@ -54,7 +71,7 @@ export const HeroAttribute: React.FC<IHeroAttrProps> = ({name, value, noOverlay,
                 <Attribute isSmall={small}>
                     <Icon 
                         isSmall={small}
-                        src={`${publicUrl}/${name}.png`} 
+                        src={`/public/${name}.png`} 
                         alt={`${name} icon`} 
                     />
                     {value}
@@ -72,7 +89,7 @@ export const HeroAttribute: React.FC<IHeroAttrProps> = ({name, value, noOverlay,
                 <Attribute isSmall={small}>
                     <Icon 
                         isSmall={small}
-                        src={`${publicUrl}/${name}.png`} 
+                        src={`/public/${name}.png`} 
                         alt={`${name} icon`} 
                     />
                     {value}
@@ -81,3 +98,5 @@ export const HeroAttribute: React.FC<IHeroAttrProps> = ({name, value, noOverlay,
         );
     }
 }
+//=====================================================================================//
+// HeroAttribute END

@@ -44,9 +44,7 @@ const HEROES_QUERY = gql`
 	}
 `;
 
-const IndexContainer = styled.div`
-    background: #fbfbfb;
-`;
+const IndexContainer = styled.div`background: #fbfbfb;`;
 
 const Body = styled(FlexContainer)`
     max-width: 100vw;
@@ -67,9 +65,6 @@ const CarouselContainer = styled(FlexContainer)`
 const ButtonIcon = styled.img`
     width: 40px;
     margin: 4vmin;
-    @media hover {
-        width: 50px;
-    }
 `;
 
 const handleLoading = () => <div>Loading...</div>;
@@ -80,8 +75,10 @@ interface IHeroIndexProps {}
 
 
 //=====================================================================================//
-//
-//
+/*
+ * The main component of the Hero Index application. Pulls all the available data on heroes
+ * from the backend and displays the heroes one at a time in a React Bootstrap carousel.
+ */
 export const HeroIndex: React.FC<IHeroIndexProps> = () => {
     const { data, error, loading } = useQuery(HEROES_QUERY);
 
@@ -98,12 +95,12 @@ export const HeroIndex: React.FC<IHeroIndexProps> = () => {
                 <Section
                     heading={'Hunter Index'}
                 />
+
                 <Body>
                     <HeroCardContainer>
-                        <CarouselContainer>
 
+                        <CarouselContainer>
                             <Carousel 
-                                keyboard={true}
                                 indicators={false}
                                 prevIcon={<ButtonIcon src={`${publicUrl}/arrow_left.svg`} alt="<"/>}
                                 nextIcon={<ButtonIcon src={`${publicUrl}/arrow_right.svg`} alt=">"/>}
@@ -115,10 +112,11 @@ export const HeroIndex: React.FC<IHeroIndexProps> = () => {
                                         </Carousel.Item>
                                 ))}
                             </Carousel>
-
                         </CarouselContainer>
+
                     </HeroCardContainer>
                 </Body>
+
                 <Footer />
             </IndexContainer>
         </main>
@@ -126,3 +124,4 @@ export const HeroIndex: React.FC<IHeroIndexProps> = () => {
 };
 
 //=====================================================================================//
+//HeroIndex END

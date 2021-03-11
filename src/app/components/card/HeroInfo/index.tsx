@@ -13,6 +13,9 @@ import {
     noSelect
 } from '../../Layout';
 
+
+// Top level containers
+//=================================/
 const StatsContainer = styled.div`
     height: 54%;
     font-family: "Oswald";
@@ -20,11 +23,14 @@ const StatsContainer = styled.div`
     ${noSelect}
 `;
 
-const BottomQuarter = styled(FlexContainer)`
+const PaddedFlex = styled(FlexContainer)`
     height: 65%;
     padding: 15px 0 15px 0;
 `;
+//=================================/
 
+// Attributes
+//=================================/
 const Attributes = styled.div`
     width: 60%;
     padding-right: 15px;
@@ -38,12 +44,15 @@ const AttributeRow = styled.div`
     justify-content: space-around;
     margin-bottom: auto;
 `;
+//=================================/
 
+// Skills
+//=================================/
 const SkillsBody = styled.div`
     height: calc(100% - 37px);
     display: flex;
     flex-direction: column;
-    padding-left: 15px;
+    padding-left: 22px;
     margin-bottom: auto;
     overflow: scroll;
 `;
@@ -60,6 +69,7 @@ const SkillContainer = styled(FlexContainer)`
     padding-bottom: 20px;
 `;
 const Damage = styled(FlexContainer)`margin-left: 10px;`;
+//=================================/
 
 
 interface IHeroInfo {
@@ -68,28 +78,36 @@ interface IHeroInfo {
     skills: Skill[];
 }
 
-
+//=====================================================================================//
+/*
+ * Container for hero description, attributes and skills. Displays attributes and skills
+ * in a neat 'grid' with icons showing attribute and damage types.
+ */
 export const HeroInfo: React.FC<IHeroInfo> = ({description, stats, skills}) => {
     return (
         <Container width="100%" height="100%">
 
+            {/* Hero description, top half */}
             <Container height="35%">
                 <PaddedContainer top="25px">
                     <Paragraph>{description}</Paragraph>
                 </PaddedContainer>
             </Container>
 
+            {/* Bottom half, attributes and skills */}
             <StatsContainer>
                 <HLine width="100%" />
-                <BottomQuarter>
+                <PaddedFlex>
 
                     <Attributes>
+                        {/* "HSM" aka. Health, stamina and mana */}
                         <AttributeRow>
                             <HeroAttribute noOverlay name="health" value={stats.healthpoints}/>
                             <HeroAttribute noOverlay name="stamina" value={stats.stamina}/>
                             <HeroAttribute noOverlay name="mana"  value={stats.mana}/>
                         </AttributeRow>
 
+                        {/* Other attributes */}
                         <AttributeRow>
                             <HeroAttribute name="strength" value={stats.strength}/>
                             <HeroAttribute name="intelligence" value={stats.intelligence}/>
@@ -100,8 +118,9 @@ export const HeroInfo: React.FC<IHeroInfo> = ({description, stats, skills}) => {
 
                     <VLine height="100%" />
 
+                    {/* Skills */}
                     <Container width="40%" height="100%">
-                        <PaddedContainer left="15px">
+                        <PaddedContainer left="22px">
                             <SkillsHeader>Skills</SkillsHeader>
                         </PaddedContainer>
                         <SkillsBody>
@@ -117,10 +136,11 @@ export const HeroInfo: React.FC<IHeroInfo> = ({description, stats, skills}) => {
                         </SkillsBody>
                     </Container>
 
-                </BottomQuarter>
+                </PaddedFlex>
 
                 <HLine width="100%" />
                 
+                {/* Weakness and resistance */}
                 <FlexContainer>
                     <FlexContainer>
                         Weakness:
@@ -137,3 +157,5 @@ export const HeroInfo: React.FC<IHeroInfo> = ({description, stats, skills}) => {
         </Container>
     );
 }
+//=====================================================================================//
+// HeroInfo END

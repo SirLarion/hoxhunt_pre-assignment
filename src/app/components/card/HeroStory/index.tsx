@@ -11,11 +11,13 @@ const StoryContainer = styled.div`
     padding: 25px 25px 0 25px;
 `;
 
+// Styling for the actual paragraph containing the hero backstory.
+// First letter is large with a different styling for that storybook feel
 const StoryParagraph = styled.p`
     color: #191919;
     font-weight: 500;
     letter-spacing: 0.65px;
-    line-height: ;
+    line-height: ${lineHeight}vh;
     font-family: "Montserrat";
     margin: 0;
     ::first-letter {
@@ -33,6 +35,10 @@ interface IHeroStoryProps {
     story: string;
 }
 
+//=====================================================================================//
+/*
+ * Container for the backstory of a hero displayed in a storybook-esque style
+ */
 export const HeroStory: React.FC<IHeroStoryProps> = ({story}) => {
     const trimmed = story.split('\n\n').map((s: string) => s.trim()).join(' ');
     return (
@@ -41,3 +47,4 @@ export const HeroStory: React.FC<IHeroStoryProps> = ({story}) => {
         </StoryContainer>
     );
 };
+//=====================================================================================//

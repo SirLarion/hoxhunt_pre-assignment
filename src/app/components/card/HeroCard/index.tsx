@@ -7,6 +7,9 @@ import { HeroType } from '../../../types';
 
 import { FlexContainer, noSelect } from '../../Layout';
 
+
+// If viewport is above 1400px (i.e. normal 1920p screen),
+// change card layout
 const cardResponsive = ' \
     @media (min-width: 1400px) { \
         width: initial; \
@@ -14,9 +17,9 @@ const cardResponsive = ' \
     } \
 ';
 
+// Card elements
 //=================================/
 const Card = styled.div`
-    height: 85vh;
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -36,6 +39,7 @@ const HeroImage = styled.img`
 
 const TextContainer = styled.div`
     background: #f0f0f0;
+    height: 60vh;
     ${cardResponsive}
     padding: 40px;
 `;
@@ -50,8 +54,17 @@ const TextHeader = styled(FlexContainer)`
 	color: #001147;
     ${noSelect}
 `;
+//=================================/
 
+
+
+// Nav elements
+//=================================/
 const Nav = styled(FlexContainer)`padding-right: 50px;`;
+
+interface INavButton {
+    active: boolean;
+}
 
 const NavButton = styled.span`
     background: none;
@@ -60,7 +73,7 @@ const NavButton = styled.span`
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-    color:  ${props => props.color};
+    color:  ${(p: INavButton)=> p.active ? '#001147':'#7C85A0'};
     &:hover {
         color: #001147;
     }
@@ -72,6 +85,8 @@ const Spacer = styled.div`
 `;
 //=================================/
 
+
+
 interface IHeroCardProps {
     hero: HeroType;
 }
@@ -82,10 +97,15 @@ enum Tab {
 }
 
 //=====================================================================================//
-//
-//
-//
+/*
+ * Container for information on one 'hero'. Displays an image of the hero along with 
+ * a description, backstory and the skills and attributes of the hero.
+ *
+ * On a wide screen, display image and text next to each other and on a thin screen,
+ * display image on top of text
+ */
 export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
+    // Which tab is currently selected? 
     const [tab, setTab] = React.useState(Tab.Info);
     return (
         <Card>
@@ -96,30 +116,32 @@ export const HeroCard: React.FC<IHeroCardProps> = ({hero}) => {
             />
             <TextContainer>
 
+                {/* Hero name and nav bar */}
                 <TextHeader>
                     {hero.name}
                     <Nav>
                         <NavButton 
-                            color={tab === Tab.Info ? '#001147' : '#7C85A0'}
+                            active={tab === Tab.Info}
                             onClick={() => setTab(Tab.Info)}
                         >Info</NavButton>
                         <Spacer>/</Spacer>
                         <NavButton 
-                            color={tab === Tab.Story ? '#001147' : '#7C85A0'}
+                            active={tab === Tab.Story}
                             onClick={() => setTab(Tab.Story)}
                         >Story</NavButton>
                     </Nav>
                 </TextHeader>
 
-                {tab === Tab.Story 
-                    ? <HeroStory 
-                        story={hero.backStory}
-                      />
-                    : <HeroInfo 
-                        description={hero.description}
-                        stats={hero.attributes}
-                        skills={hero.skills}
-                      />
+                {/* Display info or backstory depending on the active tab */
+                    tab === Tab.Story 
+                        ? <HeroStory 
+                            story={hero.backStory}
+                          />
+                        : <HeroInfo 
+                            description={hero.description}
+                            stats={hero.attributes}
+                            skills={hero.skills}
+                          />
                 }
 
             </TextContainer>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
+// Line elements
 //=================================/
 interface IVLine {
     height: string;
@@ -21,6 +22,8 @@ export const HLine = styled.div`
 `;
 //=================================/
 
+
+// Containers
 //=================================/
 interface IPadded {
     top?: string;
@@ -50,6 +53,8 @@ export const Container = styled.div`
 `;
 //=================================/
 
+
+// Disable selection
 export const noSelect = '\
     -webkit-touch-callout:none; \
     -webkit-user-select:none; \
