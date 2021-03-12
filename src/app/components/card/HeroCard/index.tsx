@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react';
 import styled from 'styled-components'
 
 import { HeroStory } from '../HeroStory';
@@ -20,12 +20,16 @@ const cardResponsive = ' \
 // Card elements
 //=================================/
 const Card = styled.div`
-    width: 75%;
+    width: 100%;
+    max-width: 100vw;
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     border-radius: 30px;
+    @media (min-width: 780px) {
+        width: 75%;
+    }
     @media (min-width: 1400px) {
         height: 60vh;
         flex-direction: row;
@@ -48,10 +52,13 @@ const TextHeader = styled(FlexContainer)`
     justify-content: space-between;
 	font-family: "Montserrat";
 	font-weight: 800;
-    font-size: 25px;
+    font-size: 3.2vw;
     line-height: 39px;
     letter-spacing: 1.15px;
 	color: #001147;
+    @media (min-width: 780px) {
+        font-size: 25px;
+    }
     ${noSelect}
 `;
 //=================================/

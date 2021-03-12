@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react';
 import styled from 'styled-components'
 import { OverlayTrigger } from 'react-bootstrap';
 
@@ -12,13 +12,12 @@ interface SizeProps {
 // The two variants of attributes
 //=================================/
 const Attribute = styled(FlexContainer)`
-    font-size: 20px;
+    font-size: 0.95em;
     justify-content: center;
-    ${(p: SizeProps) => !p.isSmall ? 'margin: 10px' : ''}
+    ${(p: SizeProps) => !p.isSmall ? 'margin: 0.45em' : ''}
 `;
 
 const HSMattr = styled(FlexContainer)`
-    font-size: 22px;
     line-height: 24px;
     flex-direction: column;
 `;

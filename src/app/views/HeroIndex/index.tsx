@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import styled from 'styled-components';
@@ -65,6 +65,10 @@ const CarouselContainer = styled(FlexContainer)`
 const ButtonIcon = styled.img`
     width: 40px;
     margin: 4vmin;
+    display: none;
+    @media (min-width: 780px) {
+        display: block;
+    }
 `;
 
 const handleLoading = () => <div>Loading...</div>;

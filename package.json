@@ -6,7 +6,7 @@
 	"scripts": {
 		"docz:dev": "docz dev",
         "docz:serve": "docz build && docz serve",
-		"build": "yarn run clean-dist && webpack -p --config=config/webpack/prod.ts",
+		"build": "yarn run clean-dist && webpack --config=config/webpack/prod.ts",
 		"clean-dist": "rm -f -r -d dist",
 		"lint": "tslint './src/**/*.ts*' --format stylish --force",
 		"start:front": "yarn run start-dev",

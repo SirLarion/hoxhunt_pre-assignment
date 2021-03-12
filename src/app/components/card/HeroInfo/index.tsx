@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react';
 import styled from 'styled-components'
 
 import { HeroAttribute } from '../HeroAttribute';
@@ -16,11 +16,25 @@ import {
 
 // Top level containers
 //=================================/
+const DescriptionContainer = styled(Container)`
+    font-size: 2.05vw;
+    line-height: 4.1vw;
+    @media (min-width: 780px) {
+        font-size: 16px;
+        line-height: 32px;
+    }
+
+`;
+
 const StatsContainer = styled.div`
     height: 54%;
     font-family: "Oswald";
     letter-spacing: 1.2px;
     ${noSelect}
+    font-size: 2.9vw;
+    @media (min-width: 780px) {
+        font-size: 22px;
+    }
 `;
 
 const PaddedFlex = styled(FlexContainer)`
@@ -58,14 +72,13 @@ const SkillsBody = styled.div`
 `;
 
 const SkillsHeader = styled.div`
-    font-size: 22px;
     line-height: 24px;
     letter-spacing: 1.15px;
     padding-bottom: 13px;
 `;
 
 const SkillContainer = styled(FlexContainer)`
-    font-size: 16px;
+    font-size: 0.74em;
     padding-bottom: 20px;
 `;
 const Damage = styled(FlexContainer)`margin-left: 10px;`;
@@ -88,11 +101,11 @@ export const HeroInfo: React.FC<IHeroInfo> = ({description, stats, skills}) => {
         <Container width="100%" height="100%">
 
             {/* Hero description, top half */}
-            <Container height="35%">
+            <DescriptionContainer height="35%">
                 <PaddedContainer top="25px">
                     <Paragraph>{description}</Paragraph>
                 </PaddedContainer>
-            </Container>
+            </DescriptionContainer>
 
             {/* Bottom half, attributes and skills */}
             <StatsContainer>

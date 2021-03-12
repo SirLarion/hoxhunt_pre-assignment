@@ -7,7 +7,7 @@ import { HeroIndex } from './views/HeroIndex'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const graphqlClient = new ApolloClient({
-	uri: 'http://localhost:4000/',
+    uri: 'http://localhost:4000/',
 })
 
 const App: React.FC = () => {

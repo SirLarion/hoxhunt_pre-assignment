@@ -35,7 +35,7 @@
 			],
 			"@views*": [
 				"src/app/views/*"
-			],
+			]
 		}
 	},
 	"include": [

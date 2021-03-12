@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react';
 import styled from 'styled-components'
 
 import { Paragraph } from '../../Typography';
@@ -6,18 +6,21 @@ import { Paragraph } from '../../Typography';
 const lineHeight = 3.5;
 
 const StoryContainer = styled.div`
-    font-size: 16px;
-    line-height: 32px; 
-    padding: 25px 25px 0 25px;
+    font-size: 3vw;
+    padding: 3.2vw 3.2vw 0 3.2vw;
+    @media (min-width: 780px) {
+        font-size: 16px;
+        line-height: 2em;
+        padding: 25px 25px 0 25px;
+    }
 `;
 
 // Styling for the actual paragraph containing the hero backstory.
 // First letter is large with a different styling for that storybook feel
 const StoryParagraph = styled.p`
     color: #191919;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: 0.65px;
-    line-height: ${lineHeight}vh;
     font-family: "Montserrat";
     margin: 0;
     ::first-letter {
@@ -26,8 +29,8 @@ const StoryParagraph = styled.p`
         font-weight: 200;
         padding-top: 10px;
         margin-right: 6px;
-        line-height: ${2*lineHeight}vh;
-        font-size: ${2*lineHeight}vh;
+        line-height: 4em;
+        font-size: 4em;
     }
 `;
 
