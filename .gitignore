@@ -1,4 +1,6 @@
 [Ss]tatic/
+.docz/public/
+cache/
 # Logs
 logs
 *.log
